@@ -6,7 +6,6 @@ class Tarea(val horasEstimadas: Double, val responsable: Empleado, val costoInfr
     fun asignarEmpleado(unEmpleado: Empleado) =
         empleadosAsignados.add(unEmpleado)
 
-
     fun cantidadDeAsignados() =
         empleadosAsignados.size
 
@@ -18,8 +17,7 @@ class Tarea(val horasEstimadas: Double, val responsable: Empleado, val costoInfr
 
     fun sueldoDeAsignados() = empleadosAsignados.sumBy{it.sueldoPorHora}
 
-
-
+    fun nominaDeEmpleados() = empleadosAsignados + responsable
 }
 
 

@@ -41,8 +41,10 @@ class TareaDeIntegracion(val responsable: Empleado) : Tarea {
         return (this.horasNecesariasDeSubtareas() + (this.horasNecesariasDeSubtareas() / 8).roundToInt().toDouble())
     }
     override fun costoDeTarea() : Double{
-        TODO("Not yet implemented")
+        return (costoDeSubtareas() * 1.03).roundToInt().toDouble()
     }
+
+    fun costoDeSubtareas() = subtareas.sumByDouble { it.costoDeTarea() }
 
     override fun nominaDeEmpleados(): List<Empleado> {
         TODO("Not yet implemented")

@@ -46,7 +46,15 @@ class TareaTest : DescribeSpec({
       tareaDeIntegracion1.agregarSubtarea(tarea2)
       tareaDeIntegracion1.agregarSubtarea(tarea3)
       describe("horas necesarias para finalizar"){
-        tareaDeIntegracion1.horasNecesariasParaFinalizar().shouldBe(11.75)
+        it("suma de subtareas + 1 cada 8 horas"){
+          tareaDeIntegracion1.horasNecesariasParaFinalizar().shouldBe(11.75)
+        }
+      }
+      describe("costo de tarea de integracion"){
+        it("suma de costos de subtareas + bonus del 3% del sueldo del responsable"){
+          tareaDeIntegracion1.costoDeTarea().shouldBe(4086.0)
+
+        }
       }
     }
   }

@@ -29,3 +29,7 @@ tarea3.asignarEmpleado(empleado5)
 tarea1.horasNecesariasParaFinalizar()
 tarea2.horasNecesariasParaFinalizar()
 tarea3.horasNecesariasParaFinalizar()
+
+tarea2.costoDeTarea()
+tarea3.costoDeTarea()
+tarea1.costoDeTarea()

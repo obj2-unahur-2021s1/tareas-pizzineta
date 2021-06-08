@@ -5,12 +5,12 @@ import kotlin.math.roundToInt
 
 interface Tarea{
     fun costoDeTarea(): Double
-    fun nominaDeEmpleados(): List<Empleado>
+    fun nominaDeEmpleados(): Set<Empleado>
     fun horasNecesariasParaFinalizar(): Double
 }
 
 class TareaSimple(val horasEstimadas: Double, val responsable: Empleado, val costoInfraestructura: Double): Tarea{
-    val empleadosAsignados = mutableListOf<Empleado>()
+    val empleadosAsignados = mutableSetOf<Empleado>()
 
     fun asignarEmpleado(unEmpleado: Empleado) =
         empleadosAsignados.add(unEmpleado)
@@ -46,9 +46,9 @@ class TareaDeIntegracion(val responsable: Empleado) : Tarea {
 
     fun costoDeSubtareas() = subtareas.sumByDouble { it.costoDeTarea() }
 
-    override fun nominaDeEmpleados(): List<Empleado> {
-        TODO("Not yet implemented")
-    }
+    override fun nominaDeEmpleados() =
+        subtareas.flatMap { it.nominaDeEmpleados() }.toSet() + responsable
+
 
 
 

@@ -41,7 +41,8 @@ class TareaTest : DescribeSpec({
       }
     }
     describe("una tarea de integración"){
-      val tareaDeIntegracion1 = TareaDeIntegracion(empleado5)
+      val empleado6 = Empleado(70)
+      val tareaDeIntegracion1 = TareaDeIntegracion(empleado6)
       tareaDeIntegracion1.agregarSubtarea(tarea1)
       tareaDeIntegracion1.agregarSubtarea(tarea2)
       tareaDeIntegracion1.agregarSubtarea(tarea3)
@@ -54,6 +55,11 @@ class TareaTest : DescribeSpec({
         it("suma de costos de subtareas + bonus del 3% del sueldo del responsable"){
           tareaDeIntegracion1.costoDeTarea().shouldBe(4086.0)
 
+        }
+      }
+      describe("nomina de empleados"){
+        it("subtareas + responsable de tarea de integracion"){
+          tareaDeIntegracion1.nominaDeEmpleados().shouldBe(setOf(empleado1, empleado2, empleado3, empleado4, empleado5, empleado6))
         }
       }
     }

@@ -1,5 +1,6 @@
 import ar.edu.unahur.obj2.tareas.Empleado
 import ar.edu.unahur.obj2.tareas.Tarea
+import ar.edu.unahur.obj2.tareas.TareaDeIntegracion
 import ar.edu.unahur.obj2.tareas.TareaSimple
 
 // Pueden usar este archivo para hacer pruebas rápidas,
@@ -33,3 +34,10 @@ tarea3.horasNecesariasParaFinalizar()
 tarea2.costoDeTarea()
 tarea3.costoDeTarea()
 tarea1.costoDeTarea()
+
+val tareaDeIntegracion1 = TareaDeIntegracion(empleado5)
+tareaDeIntegracion1.agregarSubtarea(tarea1)
+tareaDeIntegracion1.agregarSubtarea(tarea2)
+tareaDeIntegracion1.agregarSubtarea(tarea3)
+
+tareaDeIntegracion1.nominaDeEmpleados()

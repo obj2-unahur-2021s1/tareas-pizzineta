@@ -1,6 +1,6 @@
 package ar.edu.unahur.obj2.tareas
 
-import kotlin.math.ceil
+import kotlin.math.floor
 import kotlin.math.roundToInt
 
 interface Tarea{
@@ -34,15 +34,18 @@ class TareaDeIntegracion(val responsable: Empleado) : Tarea {
 
     fun agregarSubtarea(unaTarea: Tarea) =
         subtareas.add(unaTarea)
+
     fun horasNecesariasDeSubtareas() =
         subtareas.sumByDouble { it.horasNecesariasParaFinalizar()}
 
-    override fun horasNecesariasParaFinalizar(): Double {
-        return (this.horasNecesariasDeSubtareas() + (this.horasNecesariasDeSubtareas() / 8).roundToInt().toDouble())
-    }
-    override fun costoDeTarea() : Double{
-        return (costoDeSubtareas() * 1.03).roundToInt().toDouble()
-    }
+    override fun horasNecesariasParaFinalizar() =
+        this.horasNecesariasDeSubtareas() + this.horasDePlanificacion()
+
+    fun horasDePlanificacion() =
+        floor(this.horasNecesariasDeSubtareas() / 8)
+
+    override fun costoDeTarea() =
+         (costoDeSubtareas() * 1.03).roundToInt().toDouble()
 
     fun costoDeSubtareas() = subtareas.sumByDouble { it.costoDeTarea() }
 

@@ -58,8 +58,31 @@ class TareaTest : DescribeSpec({
         }
       }
       describe("nomina de empleados"){
-        it("subtareas + responsable de tarea de integracion"){
+        it("nomina de empleados de la tareaDeIntegracion1 + su responsable"){
           tareaDeIntegracion1.nominaDeEmpleados().shouldBe(setOf(empleado1, empleado2, empleado3, empleado4, empleado5, empleado6))
+        }
+      }
+      describe("sumar otras tareas de integracion"){
+        val miguel = Empleado(21)
+        val franco = Empleado(34)
+        val luis = Empleado(23)
+        val samanta = Empleado(11)
+        val marisa = Empleado(40)
+        val tarea4 = TareaSimple(12.0, samanta, 400.0)
+        tarea4.asignarEmpleado(miguel)
+        tarea4.asignarEmpleado(franco)
+        tarea4.asignarEmpleado(luis)
+        val tareaDeIntegracion2 = TareaDeIntegracion(marisa)
+        tareaDeIntegracion2.agregarSubtarea(tarea4)
+        tareaDeIntegracion1.agregarSubtarea(tareaDeIntegracion2)
+        it("horas necesarias para terminar de tareaDeIntegracion1 si agregamos otra tarea de integracion"){
+          tareaDeIntegracion1.horasNecesariasParaFinalizar().shouldBe(15.75)
+        }
+        it("costo de tareaDeIntegracion1 si agregamos otra tarea de integracion"){
+          tareaDeIntegracion1.costoDeTarea().shouldBe(4981.0)
+        }
+        it( "nomina de la tareaDeIntegracion1 si agregamos otra tarea de integracion"){
+          tareaDeIntegracion1.nominaDeEmpleados().shouldBe(setOf(franco,samanta,luis,marisa,miguel,empleado1,empleado2,empleado3,empleado4,empleado5,empleado6))
         }
       }
     }
